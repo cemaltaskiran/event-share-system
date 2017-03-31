@@ -12,9 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('homepage');
+    return view('pages.home', ['title' => 'Anasayfa']);
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
