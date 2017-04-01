@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="css/camera.css">
         <link rel="stylesheet" href="css/owl.carousel.css">
         <link rel="stylesheet" href="css/style.css">
+        @yield('head')
         <script src="js/jquery.js"></script>
         <script src="js/jquery-migrate-1.2.1.js"></script>
         <script src="js/script.js"></script>
@@ -27,10 +28,8 @@
             $(document).ready(function() {
                 jQuery('#camera_wrap').camera({
                     loader: false,
-                    pagination: false,
-                    minHeight: '444',
-                    thumbnails: false,
-                    height: '48.375%',
+                    pagination: false,                                        
+                    thumbnails: false,                    
                     caption: true,
                     navigation: true,
                     fx: 'mosaic'

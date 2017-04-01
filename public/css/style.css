@@ -81,7 +81,7 @@ h6 {
 
 h2 {
     font-size: 72px;
-    line-height: 30px;
+    line-height: 72px;
     color: #f3aa29;
     font-weight: 300;
     margin-bottom: 20px;
@@ -326,7 +326,7 @@ header h1 a img {
 /**Content**/
 
 .content {
-    background-color: #fff;    
+    background-color: #fff;
 }
 
 .banner {
@@ -345,22 +345,23 @@ header h1 a img {
     position: absolute;
     text-align: center;
     left: 0;
-    top: 50%;
-    margin-top: -38px;
+    top: 35%;
     right: 0;
     text-transform: uppercase;
 }
 
 .banner .label .title {
-    font-size: 30px;
+    font-size: 16px;
     text-shadow: 0 0 8px #000;
     font-weight: bold;
-    line-height: 30px;
+    line-height: 16px;
     width: 96%;
     margin: 0 auto;
 }
 
 .banner .label .date {
+    font-size: 12px;
+    line-height: 12px;
     text-shadow: 0 1px 1px #000;
 }
 
@@ -692,212 +693,261 @@ footer {
     background-position: right 0;
 }
 
-
-/*==================================RESPONSIVE LAYOUTS===============================================*/
-
-@media only screen and (max-width: 995px) {
-    body {
-        min-width: 768px;
-    }
-    .fl1 {
-        float: none;
-        margin-left: 0 !important;
-        width: auto;
-    }
-    .map figure,
-    .map figure iframe,
-    #form input,
-    #form textarea,
-    #form .success {
-        width: 100% !important;
-        float: none !important;
-    }
-    #form .success {
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        -o-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-    .map figure {
-        height: auto !important;
-    }
-    .extra_wrapper {
-        overflow: visible;
-    }
-    .map figure {
-        margin-bottom: 15px;
-    }
-    .nowrap {
-        white-space: normal;
-    }
-    .caption .price {
-        display: none;
-    }
-    .caption {
-        padding-top: 20px;
-    }
-    .camera_prev {
-        margin-left: -374px;
-    }
-    .camera_next {
-        margin-right: -374px;
-    }
-    .fl1.fl2 {
-        clear: both;
-    }
+#camera_wrap {
+    height: 450px;
 }
 
-@media only screen and (max-width: 767px) {
-    body {
-        min-width: 420px;
+/* #Tablet (Portrait) (max-width: 995px)
+================================================================= */
+    @media only screen and (max-width: 995px){
+        body {
+            min-width: 768px;
+        }
+        h2{
+            font-size: 60px;
+            line-height: 60px;
+        }
+        .fl1 {
+            float: none;
+            margin-left: 0 !important;
+            width: auto;
+        }
+        .map figure,
+        .map figure iframe,
+        #form input,
+        #form textarea,
+        #form .success {
+            width: 100% !important;
+            float: none !important;
+        }
+        #form .success {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .map figure {
+            height: auto !important;
+        }
+        .extra_wrapper {
+            overflow: visible;
+        }
+        .map figure {
+            margin-bottom: 15px;
+        }
+        .nowrap {
+            white-space: normal;
+        }
+        .caption .price {
+            display: none;
+        }
+        .camera_prev {
+            margin-left: -374px;
+        }
+        .camera_next {
+            margin-right: -374px;
+        }
+        .fl1.fl2 {
+            clear: both;
+        }
+        .banner .label .title {
+            font-size: 24px;
+            line-height: 24px;
+        }
+        .banner .label .date {
+            font-size: 18px;
+            line-height: 18px;
+        }
+        
     }
-    header {
-        -webkit-background-size: auto auto !important;
-        -moz-background-size: auto auto !important;
-        -ms-background-size: auto auto !important;
-        -o-background-size: auto auto !important;
-        background-size: auto auto !important;
-    }
-    #bookingForm {
-        margin-right: 0;
-    }
-    .tmRadio p {
-        padding-left: 0;
-        padding-top: 10px;
-    }
-    .tmRadio {
-        margin-left: 0 !important;
-    }
-    .tmRadio strong {
-        margin-left: 0;
-    }
-    #bookingForm>strong+.controlHolder {
-        width: 280px;
-    }
-    .camera_prev {
-        margin-left: 0;
-        left: 20px;
-        bottom: 60px;
-        top: auto;
-        margin-top: 0;
-    }
-    .camera_next {
-        margin-right: 0;
-        right: 20px;
-        bottom: 60px;
-        top: auto;
-        margin-top: 0;
-    }
-    .banner img {
-        width: 100%;
-    }
-    .banner {
-        margin-bottom: 25px;
-    }
-    .block1 {
-        margin-bottom: 30px;
-    }
-    .map address+address {
-        margin-left: 0;
-        float: none;
-        margin-top: 20px;
-    }
-    .socials {
-        float: none;
-        overflow: hidden;
-    }
-    .copy {
-        float: none;
-        padding-top: 40px;
-    }
-    header h1 {
-        display: block;
-        width: auto;
-        position: relative;
-        height: auto;
-        margin-bottom: 20px;
-    }
-    .img_inner {
-        width: 100% !important;
-        float: none !important;
-        margin-right: 0 !important;
-        margin-bottom: 20px !important;
-    }
-    h1 a {
-        max-width: 90%;
-    }
-    .img_inner img {
-        width: 100%;
-    }
-    header h1 {
-        float: none;
-        text-align: center;
-    }
-    header h1 a {
-        width: auto;
-        display: inline-block;
-        height: auto;
-    }
-    .map {
-        padding-right: 0px !important;
-    }
-    .map figure iframe {
-        width: 100%;
-        height: 300px;
-    }
-    .map address {
-        margin-right: 0;
-    }
-    .noresize {
-        width: auto !important;
-        float: left !important;
-        margin-right: 20px !important;
-        margin-top: 4px !important;
-    }
-    .img_inner {
-        margin-top: 30px;
-    }
-    .map address {
-        float: none;
-    }
-    .ui-datepicker {
-        width: 280px;
-    }
-}
 
-@media only screen and (max-width: 479px) {
-    body {
-        min-width: 300px;
+/* #Mobile (Landscape) (max-width: 767px)
+================================================================= */
+    @media only screen and (max-width: 767px) {
+        body {
+            min-width: 420px;
+        }
+        h2{
+            font-size: 36px;
+            line-height: 36px;
+        }
+        header {
+            -webkit-background-size: auto auto !important;
+            -moz-background-size: auto auto !important;
+            -ms-background-size: auto auto !important;
+            -o-background-size: auto auto !important;
+            background-size: auto auto !important;
+        }
+        #bookingForm {
+            margin-right: 0;
+        }
+        .tmRadio p {
+            padding-left: 0;
+            padding-top: 10px;
+        }
+        .tmRadio {
+            margin-left: 0 !important;
+        }
+        .tmRadio strong {
+            margin-left: 0;
+        }
+        #bookingForm>strong+.controlHolder {
+            width: 280px;
+        }
+        .camera_prev {
+            margin-left: 0;
+            left: 20px;
+            bottom: 60px;
+            top: auto;
+            margin-top: 0;
+        }
+        .camera_next {
+            margin-right: 0;
+            right: 20px;
+            bottom: 60px;
+            top: auto;
+            margin-top: 0;
+        }
+        .banner img {
+            width: 100%;
+        }
+        .banner {
+            margin-bottom: 25px;
+        }
+        .block1 {
+            margin-bottom: 30px;
+        }
+        .map address+address {
+            margin-left: 0;
+            float: none;
+            margin-top: 20px;
+        }
+        .socials {
+            float: none;
+            overflow: hidden;
+        }
+        .copy {
+            float: none;
+            padding-top: 40px;
+        }
+        header h1 {
+            display: block;
+            width: auto;
+            position: relative;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .img_inner {
+            width: 100% !important;
+            float: none !important;
+            margin-right: 0 !important;
+            margin-bottom: 20px !important;
+        }
+        h1 a {
+            max-width: 90%;
+        }
+        .img_inner img {
+            width: 100%;
+        }
+        header h1 {
+            float: none;
+            text-align: center;
+        }
+        header h1 a {
+            width: auto;
+            display: inline-block;
+            height: auto;
+        }
+        .map {
+            padding-right: 0px !important;
+        }
+        .map figure iframe {
+            width: 100%;
+            height: 300px;
+        }
+        .map address {
+            margin-right: 0;
+        }
+        .noresize {
+            width: auto !important;
+            float: left !important;
+            margin-right: 20px !important;
+            margin-top: 4px !important;
+        }
+        .img_inner {
+            margin-top: 30px;
+        }
+        .map address {
+            float: none;
+        }
+        .ui-datepicker {
+            width: 280px;
+        }
+        .banner .label{
+            top: 25%;
+        }
+        .banner .label .title {
+            font-size: 20px;
+            line-height: 20px;
+        }
+        .banner .label .date {
+            font-size: 14px;
+            line-height: 14px;
+        }
     }
-    #bookingForm>strong+.controlHolder {
-        width: 210px;
+
+/* #Mobile (Portrait) (max-width: 479px)
+================================================================= */
+    @media only screen and (max-width: 479px) {
+        body {
+            min-width: 300px;
+        }
+        #bookingForm>strong+.controlHolder {
+            width: 210px;
+        }
+        .ui-datepicker {
+            left: 50% !important;
+            margin-left: -140px;
+        }
+        .banner .label .title {
+            font-size: 18px;
+            line-height: 18px;
+        }
+        .banner .label .date {
+            font-size: 12px;
+            line-height: 12px;
+        }
+        #camera_wrap {
+            height: 350px;
+        }
     }
-    .ui-datepicker {
-        left: 50% !important;
-        margin-left: -140px;
+
+/* #New Added 
+================================================================= */
+    .hidden {
+        display: none!important;
     }
-}
 
-.c-red {
-    color: red;
-}
+    .c-red {
+        color: red;
+    }
 
-.c-blue {
-    color: blue;
-}
+    .c-blue {
+        color: blue;
+    }
 
-.c-black {
-    color: black;
-}
+    .c-black {
+        color: black;
+    }
 
-.c-green {
-    color: green;
-}
+    .c-green {
+        color: green;
+    }
 
-.sh-black {
-    text-shadow: 0 1px 1px #000;
-}
+    .sh-black {
+        text-shadow: 0 1px 1px #000;
+    }
 
-.sh-white {
-    text-shadow: 0 1px 1px #fff;
-}
+    .sh-white {
+        text-shadow: 0 1px 1px #fff;
+    }

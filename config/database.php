@@ -47,7 +47,7 @@ return [
             'username' => env('DB_USERNAME', 'laravel_event_db'),
             'password' => env('DB_PASSWORD', 'Laravel!1'),
             'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
+            'charset' => 'utf8',
             'collation' => 'utf8_turkish_ci',
             'prefix' => '',
             'strict' => true,

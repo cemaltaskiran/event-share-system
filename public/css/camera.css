@@ -268,14 +268,13 @@
 
 
 .caption {
-
 	position: absolute;
 	text-align: center;
 	font-size: 24px;
 	line-height: 60px;
 	left: 0;
 	right: 0;
-	top: 41%;
+	top: 40%;
 	color: #fff;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;

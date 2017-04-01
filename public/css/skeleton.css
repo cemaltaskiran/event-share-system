@@ -102,7 +102,7 @@
          .container_12 .omega               { margin-right: 0;}
 
         .container_12 .grid_1 			{ width: 44px; }
-        .container_12 .grid_2  			{ width: 108px; }
+        .container_12 .grid_2  			{ width: 236px; }
         .container_12 .grid_3    		{ width: 172px; }
         .container_12 .grid_4 			{ width: 236px; }
         .container_12 .grid_5    		{ width: 300px; }
@@ -158,10 +158,12 @@
 		.grid_9,
 		.grid_10,
 		.grid_11,
-		.grid_12{margin: 0;}
+		.grid_12{margin: 0 10px;}
 
-        .container_12 .grid_1,
-        .container_12 .grid_2,
+		.container_12 .grid_2{
+			width: 130px;
+		}
+        .container_12 .grid_1,        
         .container_12 .grid_3,
         .container_12 .grid_4,
         .container_12 .grid_5,
@@ -217,10 +219,12 @@
 		.grid_9,
 		.grid_10,
 		.grid_11,
-		.grid_12{margin: 0;}
+		.grid_12{margin: 0 10px;}
 
-        .container_12 .grid_1,
-        .container_12 .grid_2,
+		.container_12 .grid_2{
+			width: 190px;
+		}
+        .container_12 .grid_1,        
         .container_12 .grid_3,
         .container_12 .grid_4,
         .container_12 .grid_5,
