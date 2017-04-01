@@ -3,6 +3,35 @@
 @section('title'){{$title}}@endsection
 
 @section('head')
+    <link rel="stylesheet" href="css/camera.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/owl.carousel.js"></script>
+    <script src="js/camera.js"></script>
+    <script src="js/jquery.equalheights.js"></script>    
+    <script>
+        $(document).ready(function() {
+            jQuery('#camera_wrap').camera({
+                loader: false,
+                pagination: false,                                        
+                thumbnails: false,                    
+                caption: true,
+                navigation: true,
+                fx: 'mosaic'
+            });
+            /*carousel*/
+            var owl = $("#owl");
+            owl.owlCarousel({
+                items: 2, //10 items above 1000px browser width
+                itemsDesktop: [995, 2], //5 items between 1000px and 901px
+                itemsDesktopSmall: [767, 2], // betweem 900px and 601px
+                itemsTablet: [700, 2], //2 items between 600 and 0
+                itemsMobile: [479, 1], // itemsMobile disabled - inherit from itemsTablet option
+                navigation: true,
+                pagination: false
+            });
+        });
+    </script>
     <style>
         table {
             border-collapse: collapse;
@@ -89,7 +118,7 @@
         </div>
         <div class="clear"></div>
         <div class="grid_12">
-            <h2>{{time()}}</h2>
+            <h2>{{date('d.m.Y H:i')}}</h2>
             <div class="hidden" style="overflow-x:auto;">
                 <table>
                     <tr>

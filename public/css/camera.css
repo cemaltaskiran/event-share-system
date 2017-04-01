@@ -274,12 +274,18 @@
 	line-height: 60px;
 	left: 0;
 	right: 0;
-	top: 40%;
+	top: 35%;
 	color: #fff;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-o-box-sizing: border-box;
 	box-sizing: border-box;
+}
+
+@media only screen and (max-width:479px){
+	.caption{
+		top: 30%;
+	}
 }
 
 .caption .price span {

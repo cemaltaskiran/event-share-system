@@ -89,11 +89,10 @@ h2 {
 
 h3 {
     font-size: 30px;
-    line-height: 27px;
-    color: #002747;
-    padding-top: 116px;
-    margin-bottom: 17px;
+    line-height: 30px;
+    color: #002747;    
     font-weight: normal;
+    margin: 30px 0;
 }
 
 h3.head1 {
@@ -107,11 +106,6 @@ h4 {
     color: #002747;
     padding-top: 72px;
     margin-bottom: 16px;
-}
-
-.page1 h3 {
-    padding-top: 69px;
-    margin-bottom: 41px;
 }
 
 .page1 h3.head1 {
@@ -286,18 +280,15 @@ header {
     -moz-background-size: 100% auto;
     -ms-background-size: 100% auto;
     -o-background-size: 100% auto;
-    background-size: 100% auto;
-    padding-bottom: 98px;
+    background-size: 100% auto;    
 }
 
 .page1 header {
-    background: none;
-    position: absolute;
+    background: white;
     left: 0;
     z-index: 999;
     right: 0;
     top: 0;
-    padding-bottom: 0;
 }
 
 header h1 {
@@ -327,10 +318,11 @@ header h1 a img {
 
 .content {
     background-color: #fff;
+    padding: 30px 0;
 }
 
 .banner {
-    top: -45px;
+    top: -70px;
     position: relative;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, .9);
     margin-bottom: 20px;
@@ -669,30 +661,6 @@ footer {
     text-transform: uppercase;
 }
 
-#toTop {
-    display: none;
-    text-decoration: none;
-    position: fixed;
-    bottom: 40px;
-    left: 51%;
-    margin-left: 500px;
-    overflow: hidden;
-    width: 50px;
-    height: 49px;
-    border: none;
-    text-indent: -999px;
-    z-index: 20;
-    background: url(../images/totop.png) no-repeat left 0;
-    transition: 0s ease;
-    -o-transition: 0s ease;
-    -webkit-transition: 0s ease;
-}
-
-#toTop:hover {
-    outline: none;
-    background-position: right 0;
-}
-
 #camera_wrap {
     height: 450px;
 }
@@ -778,7 +746,7 @@ footer {
             -o-background-size: auto auto !important;
             background-size: auto auto !important;
         }
-        #bookingForm {
+        #form {
             margin-right: 0;
         }
         .tmRadio p {
@@ -791,7 +759,7 @@ footer {
         .tmRadio strong {
             margin-left: 0;
         }
-        #bookingForm>strong+.controlHolder {
+        #form>strong+.controlHolder {
             width: 280px;
         }
         .camera_prev {
@@ -902,7 +870,7 @@ footer {
         body {
             min-width: 300px;
         }
-        #bookingForm>strong+.controlHolder {
+        #form>strong+.controlHolder {
             width: 210px;
         }
         .ui-datepicker {
@@ -951,3 +919,55 @@ footer {
     .sh-white {
         text-shadow: 0 1px 1px #fff;
     }
+    .mt10{
+        margin-top: 10px!important;
+    }
+    .mt20{
+        margin-top: 20px!important;
+    }
+    .mt30{
+        margin-top: 30px!important;
+    }
+    .mt40{
+        margin-top: 40px!important;
+    }
+    .mt50{
+        margin-top: 50px!important;
+    }
+    input{
+        box-sizing: border-box;
+    }
+    #form input[type="text"],
+    #form input[type="email"],
+    #form input[type="password"],
+    #form input[type="date"],
+    #form select{
+        margin: 0 0 8px 0;
+        height: 28px;
+        line-height: 28px;
+        border: 1px solid #b1b1b1;
+        padding: 0 5px;
+        width: 100%;
+        background: #fff url('../images/input_bg.gif') repeat-x top;
+        color: darkslateblue;        
+    }
+    #form input[type="submit"]{
+        height: 36px;
+        line-height: 36px;
+        margin: 0;
+        padding: 0 10px;
+        background: #0f6ca3;
+        font-size: 16px;
+        text-align: center;
+        text-shadow: 0 1px #000;
+        color: #fff;
+        border: 0;
+        border-bottom: 2px solid #002141;
+        cursor: pointer;
+        float: right;
+        font-weight: 400;
+    }
+    #form input[type="submit"]:focus{
+        border: 0;
+        cursor: progress;
+    }    
