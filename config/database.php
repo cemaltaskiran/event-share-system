@@ -51,7 +51,7 @@ return [
             'collation' => 'utf8_turkish_ci',
             'prefix' => '',
             'strict' => true,
-            'engine' => null,
+            'engine' => env('DB_ENGINE'),
         ],
 
         'pgsql' => [
