@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@php
+    $title = "Anasayfa";
+@endphp
+
 @section('title'){{$title}}@endsection
 
 @section('head')
