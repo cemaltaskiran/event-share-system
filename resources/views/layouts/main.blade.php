@@ -3,14 +3,14 @@
     <head>
         <title>Etkinlik Takip Modülü - @yield('title')</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="css/style.css">
-        <script src="js/jquery.js"></script>
-        <script src="js/jquery-migrate-1.2.1.js"></script>
-        <script src="js/script.js"></script>
-        <script src="js/superfish.js"></script>
-        <script src="js/jquery.mobilemenu.js"></script>
+        <link rel="stylesheet" href="assets/css/style.css">
+        <script src="assets/js/jquery.js"></script>
+        <script src="assets/js/jquery-migrate-1.2.1.js"></script>
+        <script src="assets/js/script.js"></script>
+        <script src="assets/js/superfish.js"></script>
+        <script src="assets/js/jquery.mobilemenu.js"></script>
         <!--[if (gt IE 9)|!(IE)]><!-->
-            <script src="js/jquery.mobile.customized.min.js"></script>
+            <script src="assets/js/jquery.mobile.customized.min.js"></script>
         <!--<![endif]-->        
         <!--[if lt IE 8]>
             <div style=' clear: both; text-align:center; position: relative;'>
@@ -20,8 +20,8 @@
             </div>
         <![endif]-->
         <!--[if lt IE 9]>
-            <script src="js/html5shiv.js"></script>
-            <link rel="stylesheet" media="screen" href="css/ie.css">
+            <script src="assets/js/html5shiv.js"></script>
+            <link rel="stylesheet" media="screen" href="assets/css/ie.css">
         <![endif]-->
         @yield('head')
     </head>

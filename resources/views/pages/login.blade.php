@@ -5,7 +5,7 @@
 @section('content')
     <div class="container_12">
         <div class="grid_12">
-            <img src="../images/login_register_banner.jpg">
+            <img src="assets/images/login_register_banner.jpg">
         </div>
         <div class="clear"></div>
         <div class="grid_6">

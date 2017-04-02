@@ -3,12 +3,12 @@
 @section('title'){{$title}}@endsection
 
 @section('head')
-    <link rel="stylesheet" href="css/camera.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/owl.carousel.js"></script>
-    <script src="js/camera.js"></script>
-    <script src="js/jquery.equalheights.js"></script>    
+    <link rel="stylesheet" href="assets/css/camera.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <script src="assets/js/jquery.easing.1.3.js"></script>
+    <script src="assets/js/owl.carousel.js"></script>
+    <script src="assets/js/camera.js"></script>
+    <script src="assets/js/jquery.equalheights.js"></script>    
     <script>
         $(document).ready(function() {
             jQuery('#camera_wrap').camera({
@@ -58,7 +58,7 @@
     <div class="container_12">
         <div class="grid_2">
             <div class="banner">
-                <img class="banner_img" src="images/ban_img1.jpg" alt="">
+                <img class="banner_img" src="assets/images/ban_img1.jpg" alt="">
                 <div class="label">
                     <div class="title">13. RLC Günleri</div>
                     <div class="date">28 Şubat - 2 Mart</div>
@@ -68,7 +68,7 @@
         </div>
         <div class="grid_2">
             <div class="banner">
-                <img class="banner_img" src="images/ban_img2.jpg" alt="">
+                <img class="banner_img" src="assets/images/ban_img2.jpg" alt="">
                 <div class="label">
                     <div class="title">12. İltek Günleri</div>
                     <div class="date">28 - 31 Mart</div>
@@ -78,7 +78,7 @@
         </div>
         <div class="grid_2">
             <div class="banner">
-                <img class="banner_img" src="images/ban_img3.jpg" alt="">
+                <img class="banner_img" src="assets/images/ban_img3.jpg" alt="">
                 <div class="label">
                     <div class="title">TOSFED Gözetmen Eğitim Semineri</div>
                     <div class="date">10 Şubat</div>
@@ -88,7 +88,7 @@
         </div>
         <div class="grid_2">
             <div class="banner">
-                <img class="banner_img" src="images/ban_img1.jpg" alt="">
+                <img class="banner_img" src="assets/images/ban_img1.jpg" alt="">
                 <div class="label">
                     <div class="title">13. RLC Günleri</div>
                     <div class="date">28 Şubat - 2 Mart</div>
@@ -98,7 +98,7 @@
         </div>
         <div class="grid_2">
             <div class="banner">
-                <img class="banner_img" src="images/ban_img2.jpg" alt="">
+                <img class="banner_img" src="assets/images/ban_img2.jpg" alt="">
                 <div class="label">
                     <div class="title">12. İltek Günleri</div>
                     <div class="date">28 - 31 Mart</div>
@@ -108,7 +108,7 @@
         </div>
         <div class="grid_2">
             <div class="banner">
-                <img class="banner_img" src="images/ban_img3.jpg" alt="">
+                <img class="banner_img" src="assets/images/ban_img3.jpg" alt="">
                 <div class="label">
                     <div class="title">TOSFED Gözetmen Eğitim Semineri</div>
                     <div class="date">10 Şubat</div>
