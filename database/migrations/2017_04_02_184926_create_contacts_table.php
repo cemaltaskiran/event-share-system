@@ -15,10 +15,10 @@ class CreateContactsTable extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id')->references('id')->on('users');
+            $table->unsignedInteger('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedInteger('contact_type_id')->references('id')->on('contact_types');
-            $table->string('value');
-            $table->timestamps();
+            $table->string('value');    
+            $table->timestamps();        
         });
     }
 

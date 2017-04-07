@@ -6,12 +6,13 @@
 }
 .menu_block nav {
 	position: relative;
-	font-family: 'PT Sans Narrow', sans-serif;
+	height: 45px;	
 }
 nav>.sf-menu {
 	z-index: 990;
 	text-align: left;
 	position: relative;
+	float: left;
 }
 nav{ position:relative;padding: 0;}
 .sf-menu ul {position:absolute;top:-999px; display:none;/* left offset of submenus need to match (see below) */}
@@ -22,8 +23,8 @@ nav{ position:relative;padding: 0;}
 	float: left;
 	margin-right: 30px;
 	font-size: 18px;
+	line-height: 47px;
 	text-transform: uppercase;
-	line-height: 20px;
 }
 .sf-menu>li>ul>li {
   float: none;
@@ -34,7 +35,7 @@ nav{ position:relative;padding: 0;}
 	text-align: center;
 	color: #ededed;
 	display: block;
-	padding: 12px 0;
+	height: 45px;
 	text-shadow: 0 -1px rgba(0, 0, 0, .25);
 }
 .sf-menu>li.sfHover>a, .sf-menu>li.current>a, .sf-menu>li>a:hover {
@@ -55,7 +56,6 @@ nav{ position:relative;padding: 0;}
 }
 .sf-menu>li>ul>li>a.sf-with-ul:after {
 	content: '';
-    font-family: 'FontAwesome';
 	position: absolute;
 	width: 5px;
 	font-size: 15px;

@@ -15,8 +15,8 @@ class CreateCommentReputationsTable extends Migration
     {
         Schema::create('comment_reputations', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('comment_id')->references('id')->on('comments');
-            $table->unsignedInteger('user_id')->references('id')->on('users');
+            $table->unsignedInteger('comment_id')->references('id')->on('comments')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedInteger('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('is_good');
             $table->timestamps();
         });

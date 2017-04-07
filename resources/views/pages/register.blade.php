@@ -18,8 +18,8 @@
                 {{ csrf_field() }}
                 
                 <div>
-                    <label for="name_surname">Adınız Soyadınız</label>
-                    <input type="text" name="name_surname" required>
+                    <label for="name_surname">Kullanıcı adı</label>
+                    <input type="text" name="username" required>
                 </div>
                 <div>
                     <label for="email">E-Posta</label>
@@ -33,14 +33,14 @@
                     <label for="password_confirmation">Şifre Tekrar</label>
                     <input type="password" name="password_confirmation" required>
                 </div>
-                <div>
+                <div class="hidden">
                     <label for="gender">Cinsiyet</label>
                     <select name="gender" required>                        
                         <option value="Erkek">Erkek</option>
                         <option value="Kadın">Kadın</option>
                     </select>
                 </div>
-                <div>
+                <div class="hidden">
                     <label for="bdate">Doğum Tarihi</label>
                     <input type="date" name="bdate" max="2010-12-31" required>
                 </div>

@@ -15,7 +15,7 @@ class CreateEventImageStorageTable extends Migration
     {
         Schema::create('event_image_storage', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('event_id')->references('id')->on('events');
+            $table->unsignedInteger('event_id')->references('id')->on('events')->onDelete('cascade')->onUpdate('cascade');
             $table->binary('img');
             $table->timestamps();
         });
