@@ -18,7 +18,7 @@
                 {{ csrf_field() }}
                 
                 <div>
-                    <label for="name_surname">Kullanıcı adı</label>
+                    <label for="username">Kullanıcı adı</label>
                     <input type="text" name="username" required>
                 </div>
                 <div>
@@ -35,16 +35,16 @@
                 </div>
                 <div class="hidden">
                     <label for="gender">Cinsiyet</label>
-                    <select name="gender" required>                        
+                    <select name="gender" >                        
                         <option value="Erkek">Erkek</option>
                         <option value="Kadın">Kadın</option>
                     </select>
                 </div>
                 <div class="hidden">
                     <label for="bdate">Doğum Tarihi</label>
-                    <input type="date" name="bdate" max="2010-12-31" required>
+                    <input type="date" name="bdate" max="2010-12-31" >
                 </div>
-                <input type="submit" name="login_submit" value="Giriş Yap" onClick="return true">
+                <input type="submit" name="login_submit" value="Üye ol" onClick="return true">
             </form>            
         </div>
     </div>
