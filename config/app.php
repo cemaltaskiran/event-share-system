@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/event-share-system/public'),
+    'url' => env('APP_URL', 'http://localhost/event-share-system'),
 
     /*
     |--------------------------------------------------------------------------
@@ -228,8 +228,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        /* New added */
-        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        // New added 
+        
 
     ],
 

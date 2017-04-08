@@ -12,21 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('pages.home');
-})->name('homepage');
+    return view('welcome');
+});
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/home', 'HomeController@index');
 
-Route::get('/dashboard/edit', function () {
-    return view('dashboard.edit');
-})->name('dashboard.edit');
+Auth::routes();
 
-Route::get('/dashboard/attended-events', function () {
-    return view('dashboard.attended-events');
-})->name('dashboard.attended-events');
-
-Route::get('/dashboard/iterests', function () {
-    return view('dashboard.interests');
-})->name('dashboard.interests');
+Route::get('/home', 'HomeController@index');
