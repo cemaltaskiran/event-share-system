@@ -18,7 +18,7 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next, $role/*, $permission*/){
         if (Auth::guest()) {
-            return redirect('home.index');
+            return redirect('login');
         }
 
         if (! $request->user()->hasRole($role)) {
