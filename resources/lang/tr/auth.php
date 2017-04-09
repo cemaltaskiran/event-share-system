@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Hatalı bilgiler girdiniz. Lütfen yeniden deneyiniz.',
-    'throttle' => 'Azami giriş denemesini aştınız. Lütfen :seconds saniye sonra tekrar deneyiniz.',
+    'failed'    => 'Bu kimlik bilgileri bizim kayıtlarımız ile eşleşmiyor.',
+    'throttle'  => 'Çok sayıda hatalı oturum açma girişiminde bulundunuz. Lütfen :seconds saniye sonra tekrar deneyiniz.',
 
 ];

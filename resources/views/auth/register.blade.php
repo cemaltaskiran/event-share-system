@@ -74,22 +74,22 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group hide">
                             <label for="gender" class="col-md-4 control-label">Cinsiyet</label>
 
                             <div class="col-md-6">
-                                <select id="gender" class="form-control" name="gender" required>                                    
+                                <select id="gender" class="form-control" name="gender" >                                    
                                     <option value="Erkek">Erkek</option>
                                     <option value="Kadın">Kadın</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group hide">
                             <label for="bdate" class="col-md-4 control-label">Doğum Tarihi</label>
 
                             <div class="col-md-6">
-                                <input id="bdate" type="date" class="form-control" name="bdate" required>
+                                <input id="bdate" type="date" class="form-control" name="bdate" >
                             </div>
                         </div>
 

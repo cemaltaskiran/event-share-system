@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'password' => 'Şifreniz en az 6 karakter olmalı ve uyuşmalı.',
-    'reset' => 'Şifreniz yenilendi!',
-    'sent' => 'Şifre yenileme linki e-postanıza gönderildi.',
-    'token' => 'Geçersiz şifre yenileme linki girdiniz.',
-    'user' => "Bu e-posta adresine sahip kullanıcı bulunamadı.",
+    'password'  => 'Parolalar en az altı karakter olmalı ve onay ile eşleşmelidir.',
+    'reset'     => 'Parolanız başarıyla sıfırlandı!',
+    'sent'      => 'Parola sıfırlama bileti e-posta ile gönderildi!',
+    'token'     => 'Parola sıfırlama bileti geçersiz.',
+    'user'      => 'Bu e-posta adresi ile kayıtlı bir üye bulunmuyor.',
 
 ];

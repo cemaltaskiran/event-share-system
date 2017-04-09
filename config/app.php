@@ -178,7 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // New added         
-
+        Spatie\Permission\PermissionServiceProvider::class,
     ],
 
     /*
@@ -229,7 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         // New added 
-        
+        'Input' => Illuminate\Support\Facades\Input::class,
 
     ],
 
