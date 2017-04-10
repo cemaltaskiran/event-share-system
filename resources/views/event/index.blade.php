@@ -20,6 +20,18 @@
                     </div>
                     <hr>
                     <div class="row">
+                        <div class="col-md-12">
+                          @if (session('success'))
+                              <div class="alert alert-success">
+                                  {{ session('success') }}
+                              </div>
+                          @elseif ($errors->any())
+                              <div class="alert alert-danger">
+                                  {{ $errors->first() }}
+                              </div>
+                          @endif
+
+                        </div>
                         <div class="col-md-12 table-responsive">
                             <table class="table table-hover">
                                 <thead>
@@ -30,7 +42,7 @@
                                         <th>Başlangıç Tarihi</th>
                                         <th>Bitiş Tarihi</th>
                                         <th>Son Katılım Tarihi</th>
-                                        <th>Katılım Ücreti</th>                                    
+                                        <th>Katılım Ücreti</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,10 +60,50 @@
                                                 <td>{{ $event->finish_date }}</td>
                                                 <td>{{ $event->last_attendance_date }}</td>
                                                 <td>{{ $event->attendance_price }}</td>
-                                                <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
-                                                <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                                                @php
+                                                  $updateUrl = route('event.update', ['id' => $event->id]);
+                                                  $deleteUrl = route('event.delete', ['id' => $event->id]);
+                                                @endphp
+                                                <td><a href="{{ $updateUrl }}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                                                <td><a class="delete" href="{{ $deleteUrl }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                                             </tr>
                                         @endforeach
+                                        <script>
+                                          $.ajaxSetup({
+                                                  headers: {
+                                                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                                  }
+                                          });
+                                          $(document).on('click', 'a.delete', function(e) {
+                                              var result = confirm("Bu kaydı silmek istediğinize emin misiniz?");
+                                              if(result == true){
+                                                e.preventDefault(); // does not go through with the link.
+
+                                                var $this = $(this);
+
+                                                $.post({
+                                                    type: $this.data('method'),
+                                                    url: $this.attr('href')
+                                                }).done(function (k) {
+                                                });
+                                                // hide row
+                                                jQuery(this).parents('tr').addClass("danger").hide("slow");
+                                                // notify user
+                                                $.notify({
+                                                   // options
+                                                   message: 'Etkinlik silindi!'
+                                                  },{
+                                                      type: 'info',
+                                                      delay: 1000,
+                                                      animate: {
+                                                      enter: 'animated fadeInDown',
+                                                      exit: 'animated fadeOutUp'
+                                                   },
+                                                });
+                                              }
+                                              return false;
+                                            });
+                                          </script>
                                     @endif
                                 </tbody>
                             </table>

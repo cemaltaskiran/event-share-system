@@ -27,7 +27,10 @@ Route::group(['middleware' => ['role:admin']], function()
     Route::get('/home/events', 'EventController@displayEvents')->name('event.index');
     Route::get('/home/create-event', 'EventController@showCreateForm')->name('event.create');
     Route::post('/home/post-event', 'EventController@store')->name('event.post');
-    
+    Route::get('/home/update-event/{id}', 'EventController@showUpdateForm')->name('event.update');
+    Route::post('/home/update-event-submit/{id}', 'EventController@update')->name('event.update.submit');
+    Route::post('/home/delete-event/{id}', 'EventController@destroy')->name('event.delete');
+
 });
 
 Route::get('/event/{id}', 'EventController@profile')->where('id', '[0-9]+');
