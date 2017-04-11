@@ -33,7 +33,7 @@ class EventController extends Controller
     }
 
     public function displayEvents(){
-        $events = Event::all();
+        $events = Event::paginate(15);
 
         return view('event.index')->with('events', $events);
     }

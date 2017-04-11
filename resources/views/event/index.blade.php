@@ -69,41 +69,42 @@
                                             </tr>
                                         @endforeach
                                         <script>
-                                          $.ajaxSetup({
-                                                  headers: {
-                                                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                                  }
-                                          });
-                                          $(document).on('click', 'a.delete', function(e) {
-                                              var result = confirm("Bu kaydı silmek istediğinize emin misiniz?");
-                                              if(result == true){
-                                                e.preventDefault(); // does not go through with the link.
+                                              $.ajaxSetup({
+                                                    headers: {
+                                                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                                    }
+                                              });
+                                              $(document).on('click', 'a.delete', function(e) {
+                                                var result = confirm("Bu kaydı silmek istediğinize emin misiniz?");
+                                                if(result == true){
+                                                  e.preventDefault(); // does not go through with the link.
 
-                                                var $this = $(this);
+                                                  var $this = $(this);
 
-                                                $.post({
-                                                    type: $this.data('method'),
-                                                    url: $this.attr('href')
-                                                }).done(function (k) {
-                                                });
-                                                // hide row
-                                                jQuery(this).parents('tr').addClass("danger").hide("slow");
-                                                // notify user
-                                                $.notify({
-                                                   // options
-                                                   message: 'Etkinlik silindi!'
-                                                  },{
-                                                      type: 'info',
-                                                      delay: 1000,
-                                                      animate: {
-                                                      enter: 'animated fadeInDown',
-                                                      exit: 'animated fadeOutUp'
-                                                   },
-                                                });
-                                              }
-                                              return false;
-                                            });
-                                          </script>
+                                                  $.post({
+                                                     type: $this.data('method'),
+                                                     url: $this.attr('href')
+                                                  }).done(function (k) {
+                                                  });
+                                                  // hide row
+                                                  jQuery(this).parents('tr').addClass("danger").hide("slow");
+                                                  // notify user
+                                                  $.notify({
+                                                     // options
+                                                     message: 'Etkinlik silindi!'
+                                                    },{
+                                                       type: 'info',
+                                                       delay: 1000,
+                                                       animate: {
+                                                       enter: 'animated fadeInDown',
+                                                       exit: 'animated fadeOutUp'
+                                                     },
+                                                  });
+                                                }
+                                                return false;
+                                              });
+                                        </script>
+                                        {{ $events->links() }}
                                     @endif
                                 </tbody>
                             </table>
