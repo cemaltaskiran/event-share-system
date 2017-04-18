@@ -34,7 +34,9 @@ class EventController extends Controller
 
     public function displayEvents(){
         $events = Event::paginate(15);
-
+        if($events->isEmpty()){
+            return redirect()->route('event.index');
+        }
         return view('event.index')->with('events', $events);
     }
 
@@ -101,6 +103,7 @@ class EventController extends Controller
         $event = Event::find($id);
         if($event){
           $name = $event->name;
+          $event->unsearchable();
           $event->delete();
           return redirect()->route('event.index')->with('success', $name." adlı etkinlik başarıyla silindi.");
         }
