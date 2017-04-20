@@ -2,14 +2,11 @@
 
 namespace App;
 
-use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class Event extends Model
-{
-
-    use Searchable;
+{    
 
     protected $table = 'events';
 

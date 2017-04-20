@@ -32,8 +32,21 @@ class EventController extends Controller
         return null;
     }
 
-    public function displayEvents(){
-        $events = Event::paginate(15);
+    public function showIndex(){
+		$events = Event::orderBy("id", "desc")->get();
+
+		return view('index')->with('events', $events);
+	}
+
+    public function displayEvents(Request $request){
+
+        $events = Event::where(function($query) use ($request){
+            // Filter by search keyword
+            if(($search = $request->get("search"))){
+                $query->where('name', 'like', '%'.$search.'%');
+            }
+        })
+        ->orderBy("id", "desc")->paginate(10);
         if($events->isEmpty()){
             return redirect()->route('event.index');
         }
@@ -103,7 +116,6 @@ class EventController extends Controller
         $event = Event::find($id);
         if($event){
           $name = $event->name;
-          $event->unsearchable();
           $event->delete();
           return redirect()->route('event.index')->with('success', $name." adlı etkinlik başarıyla silindi.");
         }
@@ -111,4 +123,14 @@ class EventController extends Controller
         return redirect()->route('event.index')->withErrors($errors);
 
     }
+
+    public function profile($id){
+        $event = Event::find($id);
+        if($event){
+            return view('single')->with('event', $event);
+        }
+        $errors = "Malesef böyle bir etkinlik sistemimizde kayılı değil.";
+        return redirect()->route('index')->withErrors($errors);
+    }
+
 }

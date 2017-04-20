@@ -7,7 +7,7 @@ use Auth;
 
 class RoleMiddleware
 {
-    
+
 
     /**
      * Handle an incoming request.
@@ -22,13 +22,13 @@ class RoleMiddleware
         }
 
         if (! $request->user()->hasRole($role)) {
-            echo "you dont have role";
+            //echo "you dont have role";
         }
-        
+
         // if (! $request->user()->can($permission)) {
         //     echo "you dont have permission";
         // }
 
         return $next($request);
-    }        
+    }
 }

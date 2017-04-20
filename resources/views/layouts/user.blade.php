@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('public/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/css/user.styles.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script src="{{ asset('public/js/app.js') }}"></script>

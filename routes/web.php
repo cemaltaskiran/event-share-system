@@ -14,9 +14,7 @@
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'EventController@showIndex')->name('homepage');
 
 Auth::routes();
 
@@ -33,4 +31,4 @@ Route::group(['middleware' => ['role:admin']], function()
 
 });
 
-Route::get('/event/{id}', 'EventController@profile')->where('id', '[0-9]+');
+Route::get('/event/{id}', 'EventController@profile')->where('id', '[0-9]+')->name('event.profile');
