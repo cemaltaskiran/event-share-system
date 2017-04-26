@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <h1>Merhaba {{ Auth::user()->name_surname }}</h1>
+                    <h1>Merhaba {{ Auth::user()->name }}</h1>
                 </div>
             </div>
         </div>
