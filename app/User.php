@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name_surname', 'username', 'email', 'password'//, 'gender', 'bdate'
+        'name', 'email', 'password', 'gender', 'bdate'
     ];
 
     /**
@@ -27,4 +27,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function createdEvents()
+    {
+        return $this->hasMany('App\Event', 'creator_id');
+    }
+    public function events()
+    {
+        return $this->belongsToMany('App\Event');
+    }
 }

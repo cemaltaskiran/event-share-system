@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventCategoryTable extends Migration
+class CreateEventFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateEventCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('event_category', function (Blueprint $table) {            
+        Schema::create('event_files', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('event_id')->references('id')->on('events')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedInteger('category_id')->references('id')->on('event_categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->binary('file');
+            $table->unsignedInteger('file_type_id')->references('id')->on('file_types')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE event_files MODIFY COLUMN file MEDIUMBLOB");
     }
 
     /**
@@ -27,6 +31,6 @@ class CreateEventCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event_category');
+        Schema::dropIfExists('event_files');
     }
 }

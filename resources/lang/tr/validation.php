@@ -100,14 +100,23 @@ return [
 
     'custom' => [
         'start_date' => [
-            'after' => ':attribute, şuan ki tarihten önce olamaz.',
+            'after_or_equal' => ':attribute, şuan ki tarihten önce olamaz.',
         ],
         'finish_date' => [
-            'after' => ':attribute, Başlangıç Tarihinden önce olamaz.',
+            'after_or_equal' => ':attribute, Başlangıç Tarihi değerinden önce olamaz.',
         ],
         'last_attendance_date' => [
-            'before' => ':attribute, Bitiş Tarihinden sonra olamaz.',
+            'before_or_equal' => ':attribute, Bitiş Tarihi değerinden sonra olamaz.',
         ],
+        'publication_date' => [
+            'before_or_equal' => ':attribute, Başlangıç Tarihi değerinden sonra olamaz.',
+        ],
+        'max_age' => [
+            'greater_than_field' => ':attribute, Minumum Yaş değerinden küçük olamaz.'
+        ],
+        'city' => [
+            'integer' => ':attribute alanı boş olamaz.'
+        ]
     ],
 
     /*
@@ -129,6 +138,17 @@ return [
         'finish_date' => 'Bitiş Tarihi',
         'last_attendance_date' => 'Son Katılım Tarihi',
         'attendance_price' => 'Katılım Ücreti',
+        'file' => 'Dosya',
+        'categories' => 'Kategoriler',
+        'city' => 'Şehir',
+        'publication_date' => 'Yayın Tarihi',
+        'min_age' => 'Minimum Yaş',
+        'max_age' => 'Maksimum Yaş',
+        'footnote' => 'Dipnot',
+        'description' => 'Açıklama',
+        'image' => 'Resim',
+        'password' => 'Şifre',
+        'email' => 'E-posta',
     ],
 
 ];

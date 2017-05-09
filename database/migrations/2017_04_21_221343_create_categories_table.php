@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrganizerSpecsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateOrganizerSpecsTable extends Migration
      */
     public function up()
     {
-        Schema::create('organizer_specs', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('address');
-            $table->boolean('is_Active');            
+            $table->string('name')->unique();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateOrganizerSpecsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organizer_specs');
+        Schema::dropIfExists('categories');
     }
 }

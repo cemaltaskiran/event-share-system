@@ -1,0 +1,171 @@
+/*!
+ * Start Bootstrap - Shop Homepage (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+    padding: 4px;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 0 rgba(0,0,0,.1);
+}
+
+.caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.pagination{
+	margin: 0!important;
+}
+
+.carousel-control i{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+/* Added later */
+
+.thumbnail h4 a{
+    text-decoration: none;
+}
+
+.scroll-style::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	border: none;
+    border-radius: 10px;
+	background-color: none;
+}
+
+.scroll-style::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: none;
+}
+
+.scroll-style::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+
+	background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+}
+
+.index-category{
+    overflow-y: scroll;
+    height: 267px;
+}
+.event-box{
+    height: 295px;
+}
+@media screen and (max-width: 1200px){
+    .event-box{
+        height: 245px;
+    }
+    .index-category{
+        height: 210px;
+    }
+}
+@media screen and (max-width: 991px){
+    .event-box{
+        height: 370px;
+    }
+    .index-category{
+        height: 180px;
+    }
+}
+@media screen and (max-width: 767px){
+    .container{
+        width: 520px;
+    }
+    .event-box{
+        height: 385px;
+    }
+    .index-category{
+        height: 150px;
+    }
+}
+@media screen and (max-width: 540px){
+    .container{
+        width: 380px;
+    }
+    .event-box{
+        height: 285px;
+    }
+}
+@media screen and (max-width: 400px){
+    .container{
+        width: 320px;
+    }
+    .event-box{
+        height: 245px;
+    }
+    .index-category{
+        height: 120px;
+    }
+}
+
+.event-details{
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0;
+}
+
+.event-attributes{
+    padding: 0;
+    margin: 5px 10px;
+    list-style: none;
+}
+.event-attributes li span{
+    margin-right: 5px;
+}
+.comments-head{
+    font-size: 20px;
+}
+
+.color-green{
+    color: #2baa29;
+}
+.color-red{
+    color: #ba202e;
+}

@@ -13,11 +13,15 @@
     <!-- Styles -->
     <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('public/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/user.styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/css/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/css/select2-bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/css/user.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script src="{{ asset('public/js/app.js') }}"></script>
     <script src="{{ asset('public/js/bootstrap-notify.min.js') }}"></script>
+    <script src="{{ asset('public/js/select2.min.js') }}"></script>
+    <script src="{{ asset('public/js/functions.js') }}"></script>
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
@@ -69,7 +73,6 @@
                                                      document.getElementById('logout-form').submit();">
                                             Çıkış yap
                                         </a>
-
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
@@ -81,7 +84,6 @@
                 </div>
             </div>
         </nav>
-
         @yield('content')
     </div>
 </body>

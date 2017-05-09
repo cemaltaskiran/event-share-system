@@ -13,11 +13,15 @@
     <!-- Styles -->
     <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('public/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/main.styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/css/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/css/select2-bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/css/main.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script src="{{ asset('public/js/app.js') }}"></script>
     <script src="{{ asset('public/js/bootstrap-notify.min.js') }}"></script>
+    <script src="{{ asset('public/js/select2.min.js') }}"></script>
+    <script src="{{ asset('public/js/functions.js') }}"></script>
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
@@ -45,18 +49,71 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="{{ route('login') }}">Giriş</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('register') }}">Kayıt ol</a>
-                    </li>
+                    @if (Auth::guard('organizer')->check())
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::guard('organizer')->user()->name }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('organizer.index') }}">Organizatör paneli</a></li>
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('organizer-logout-form').submit();">
+                                        Çıkış yap
+                                    </a>
+                                    <form id="organizer-logout-form" action="{{ route('organizer.logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @elseif (!Auth::user())
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Kullanıcı Paneli <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('login') }}">Giriş</a></li>
+                                <li><a href="{{ route('register') }}">Kayıt ol</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Organizatör Paneli <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('organizer.login') }}">Giriş</a></li>
+                                <li><a href="{{ route('organizer.register') }}">Kayıt ol</a></li>
+                            </ul>
+                        </li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('home.index') }}">Kullanıcı paneli</a></li>
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        Çıkış yap
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
     </nav>
-	@yield('content')
-	<div class="container">
+    <div class="container">
+       @yield('content')
         <hr>
         <footer>
             <div class="row">

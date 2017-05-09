@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventCommentReputationsTable extends Migration
+class CreateCommentReputationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateEventCommentReputationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('event_comment_reputations', function (Blueprint $table) {            
-            $table->unsignedInteger('comment_id')->references('id')->on('event_comments')->onDelete('cascade')->onUpdate('cascade');
+        Schema::create('comment_reputations', function (Blueprint $table) {            
+            $table->unsignedInteger('comment_id')->references('id')->on('comments')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedInteger('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('is_good');
             $table->timestamps();
@@ -28,6 +28,6 @@ class CreateEventCommentReputationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event_comment_reputations');
+        Schema::dropIfExists('comment_reputations');
     }
 }
