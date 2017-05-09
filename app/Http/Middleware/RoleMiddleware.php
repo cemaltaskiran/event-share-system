@@ -22,7 +22,7 @@ class RoleMiddleware
         }
 
         if (! $request->user()->hasRole($role)) {
-            //echo "you dont have role";
+            return redirect()->route('home.index');
         }
 
         // if (! $request->user()->can($permission)) {

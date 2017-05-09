@@ -24,11 +24,12 @@ class CreateEventsTable extends Migration
             $table->dateTime('publication_date');
             $table->text('description');
             $table->string('footnote')->nullable();
-            $table->unsignedInteger('status');
-            $table->unsignedInteger('creator_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedInteger('status');            
             $table->unsignedInteger('quota')->nullable();
             $table->string('age_restriction')->nullable();
             $table->unsignedInteger('attendance_price')->nullable();
+            $table->unsignedInteger('eventable_id');
+            $table->string('eventable_type');
             $table->timestamps();
         });
     }

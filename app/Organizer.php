@@ -25,8 +25,8 @@ class Organizer extends Authenticatable
         $this->notify(new OrganizerResetPasswordNotification($token));
     }
 
-    public function createdEvents()
+    public function events()
     {
-        return $this->hasMany('App\Event', 'creator_id');
+        return $this->morphMany('App\Event', 'eventable');
     }
 }

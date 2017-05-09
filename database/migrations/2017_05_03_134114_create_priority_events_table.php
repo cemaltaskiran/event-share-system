@@ -15,8 +15,7 @@ class CreatePriorityEventsTable extends Migration
     {
         Schema::create('priority_events', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('event_id')->references('id')->on('events')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedInteger('priority_level');
+            $table->unsignedInteger('event_id')->references('id')->on('events')->onUpdate('cascade')->onDelete('cascade');            
             $table->dateTime('finish_time');
             $table->timestamps();
         });

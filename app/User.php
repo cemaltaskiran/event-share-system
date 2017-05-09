@@ -10,30 +10,22 @@ class User extends Authenticatable
 {
     use Notifiable, HasRoles;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name', 'email', 'password', 'gender', 'bdate'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
 
     public function createdEvents()
     {
-        return $this->hasMany('App\Event', 'creator_id');
+        return $this->morphMany('App\Event', 'eventable');
     }
+
     public function events()
     {
         return $this->belongsToMany('App\Event');
     }
+
 }
