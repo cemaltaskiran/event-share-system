@@ -177,8 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        // New added
-        Spatie\Permission\PermissionServiceProvider::class,
+        // New added        
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class
     ],

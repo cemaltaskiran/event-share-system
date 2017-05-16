@@ -116,7 +116,10 @@ return [
         ],
         'city' => [
             'integer' => ':attribute alanı boş olamaz.'
-        ]
+        ],
+        'start_date' => [
+            'before_if_exists' => ':attribute, Bitiş tarihinden küçük olmalıdır.'
+        ],
     ],
 
     /*
@@ -149,6 +152,12 @@ return [
         'image' => 'Resim',
         'password' => 'Şifre',
         'email' => 'E-posta',
+        'keyword' => 'Anahtar kelime',
+        'status' => 'Durum',
+        'pager' => 'Sayfa başına gösterilecek sonuç',
+        'comment' => 'Değerlendirme',
+        'count' => 'Yıldız',
+        'type' => 'Tip',
     ],
 
 ];

@@ -16,7 +16,7 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->unsignedInteger('city');
+            $table->unsignedInteger('city_id')->references('code')->on('cities')->onUpdate('cascade')->onDelete('cascade');
             $table->string('place');
             $table->dateTime('start_date');
             $table->dateTime('finish_date');
@@ -24,7 +24,7 @@ class CreateEventsTable extends Migration
             $table->dateTime('publication_date');
             $table->text('description');
             $table->string('footnote')->nullable();
-            $table->unsignedInteger('status');            
+            $table->unsignedInteger('status');
             $table->unsignedInteger('quota')->nullable();
             $table->string('age_restriction')->nullable();
             $table->unsignedInteger('attendance_price')->nullable();

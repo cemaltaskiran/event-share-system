@@ -9,17 +9,23 @@ class RedirectIfOrganizerAuthenticated
 {
     public function handle($request, Closure $next)
     {
-          //If request comes from logged in user, he will
-          //be redirect to home page.
-          if (Auth::guard()->check()) {
-              return redirect('/home');
-          }
+        //If request comes from logged in user, he will
+        //be redirect to home page.
+        if (Auth::guard()->check()) {
+            return redirect('/user');
+        }
 
-          //If request comes from logged in seller, he will
-          //be redirected to seller's home page.
-          if (Auth::guard('organizer')->check()) {
-              return redirect('/organizer');
-          }
+        //If request comes from logged in organizer, he will
+        //be redirected to organizer's home page.
+        if (Auth::guard('organizer')->check()) {
+            return redirect()->route('organizer.index');
+        }
+
+        //If request comes from logged in admin, he will
+        //be redirected to admin's home page.
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admin.index');
+        }
       return $next($request);
     }
 }

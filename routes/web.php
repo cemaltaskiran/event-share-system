@@ -18,9 +18,36 @@ Route::get('/', 'EventController@showIndex')->name('homepage');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home.index');
+Route::prefix('/user')->group(function(){
+    // Homepage
+    Route::get('', 'HomeController@index')->name('user.index');
 
-Route::prefix('organizer')->group(function() {
+    Route::group(['middleware' => 'auth'], function(){
+        // Events
+        Route::get('/events', 'EventController@displayUserEvents')->name('user.event.index');
+        Route::get('/create-event', 'EventController@showCreateForm')->name('user.event.create');
+        Route::post('/post-event', 'EventController@store')->name('user.event.post');
+        Route::get('/update-event/{id}', 'EventController@showCreatorUpdateForm')->name('user.event.update');
+        Route::post('/update-event-submit/{id}', 'EventController@update')->name('user.event.update.submit');
+        Route::post('/freeze-event/{id}', 'EventController@freezeByCreator')->name('user.event.freeze');
+        Route::post('/unfreeze-event/{id}', 'EventController@unfreezeByCreator')->name('user.event.unfreeze');
+        Route::post('/cancel-event/{id}', 'EventController@cancel')->name('user.event.cancel');
+        Route::get('/joined-events', 'UserController@joinedEvents')->name('user.event.joined.index');
+        Route::get('/view-event-file/{id}', 'EventController@download')->name('user.event.download');
+        Route::post('/send-comment/{id}', 'EventController@sendComment')->name('user.comment.send');
+
+        // Join event
+        Route::post('/join-to-event/{id}', 'EventController@joinToEvent')->name('user.event.join.submit');
+
+        // Unjoin event
+        Route::post('/unjoin-from-event/{id}', 'EventController@unjoinFromEvent')->name('user.event.unjoin.submit');
+
+        // Send complaint
+        Route::post('/complaint-event/{id}', 'ComplaintController@sendComplaintment')->name('user.complaint.send');
+    });
+});
+
+Route::prefix('/organizer')->group(function() {
 
     Route::group(['middleware' => 'organizer-guest'], function(){
         // Register
@@ -44,30 +71,76 @@ Route::prefix('organizer')->group(function() {
 
         // Homepage
         Route::get('', 'OrganizerController@index')->name('organizer.index');
+
+        // Events
+        Route::get('/events', 'EventController@displayOragnizerEvents')->name('organizer.event.index');
+        Route::get('/create-event', 'EventController@showCreateForm')->name('organizer.event.create');
+        Route::post('/post-event', 'EventController@store')->name('organizer.event.post');
+        Route::get('/update-event/{id}', 'EventController@showCreatorUpdateForm')->name('organizer.event.update');
+        Route::post('/update-event-submit/{id}', 'EventController@update')->name('organizer.event.update.submit');
+        Route::post('/freeze-event/{id}', 'EventController@freezeByCreator')->name('organizer.event.freeze');
+        Route::post('/unfreeze-event/{id}', 'EventController@unfreezeByCreator')->name('organizer.event.unfreeze');
+        Route::post('/cancel-event/{id}', 'EventController@cancel')->name('organizer.event.cancel');
     });
 
-
-
 });
 
+Route::prefix('/admin')->group(function(){
 
-Route::group(['middleware' => ['role:admin']], function()
-{
-    // Events
-    Route::get('/home/events', 'EventController@displayEvents')->name('event.index');
-    Route::get('/home/create-event', 'EventController@showCreateForm')->name('event.create');
-    Route::post('/home/post-event', 'EventController@store')->name('event.post');
-    Route::get('/home/update-event/{id}', 'EventController@showUpdateForm')->name('event.update');
-    Route::post('/home/update-event-submit/{id}', 'EventController@update')->name('event.update.submit');
-    Route::post('/home/delete-event/{id}', 'EventController@destroy')->name('event.delete');
-    // Categories
-    Route::get('/home/categories', 'CategoryController@displayCategories')->name('category.index');
-    Route::get('/home/create-category', 'CategoryController@showCreateForm')->name('category.create');
-    Route::post('/home/post-category', 'CategoryController@store')->name('category.post');
-    Route::get('/home/update-category/{id}', 'CategoryController@showUpdateForm')->name('category.update');
-    Route::post('/home/update-category-submit/{id}', 'CategoryController@update')->name('category.update.submit');
-    Route::post('/home/delete-category/{id}', 'CategoryController@destroy')->name('category.delete');
+    Route::group(['middleware' => 'admin-guest'], function(){
+        // Login
+        Route::get('/login', 'Auth\Admin\LoginController@showLoginForm')->name('admin.login');
+        Route::post('/login', 'Auth\Admin\LoginController@login')->name('admin.login.submit');
 
+        // Password Reset
+        Route::get('/password/reset', 'Auth\Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.email');
+        Route::post('/password/email', 'Auth\Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.email.submit');
+        Route::get('/password/reset/{token}', 'Auth\Admin\ResetPasswordController@showResetForm')->name('admin.reset');
+        Route::post('/password/reset', 'Auth\Admin\ResetPasswordController@reset')->name('admin.reset.submit');
+    });
+
+    Route::group(['middleware' => 'admin-auth'], function(){
+        // Logout
+        Route::post('/logout', 'Auth\Admin\LoginController@logout')->name('admin.logout');
+
+        // Homepage
+        Route::get('', 'AdminController@index')->name('admin.index');
+
+        // Events
+        Route::get('/events', 'EventController@displayAdminEvents')->name('admin.event.index');
+        Route::get('/create-event', 'EventController@showCreateForm')->name('admin.event.create');
+        Route::post('/post-event', 'EventController@store')->name('admin.event.post');
+        Route::get('/update-event/{id}', 'EventController@showAdminUpdateForm')->name('admin.event.update');
+        Route::post('/update-event-submit/{id}', 'EventController@updateByAdmin')->name('admin.event.update.submit');
+        Route::post('/delete-event/{id}', 'EventController@destroy')->name('admin.event.delete');
+        Route::post('/freeze-event/{id}', 'EventController@freezeByAdmin')->name('admin.event.freeze');
+        Route::post('/unfreeze-event/{id}', 'EventController@unfreezeByAdmin')->name('admin.event.unfreeze');
+        Route::post('/cancel-event/{id}', 'EventController@cancel')->name('admin.event.cancel');
+
+        // Categories
+        Route::get('/categories', 'CategoryController@displayCategories')->name('admin.category.index');
+        Route::get('/create-category', 'CategoryController@showCreateForm')->name('admin.category.create');
+        Route::post('/post-category', 'CategoryController@store')->name('admin.category.post');
+        Route::get('/update-category/{id}', 'CategoryController@showUpdateForm')->name('admin.category.update');
+        Route::post('/update-category-submit/{id}', 'CategoryController@update')->name('admin.category.update.submit');
+        Route::post('/delete-category/{id}', 'CategoryController@destroy')->name('admin.category.delete');
+
+        // Complaint Types
+        Route::get('/complaint-types', 'ComplaintTypeController@index')->name('admin.complaint.type.index');
+        Route::get('/create-complaint-type', 'ComplaintTypeController@create')->name('admin.complaint.type.create');
+        Route::post('/post-complaint-type', 'ComplaintTypeController@store')->name('admin.complaint.type.post');
+        Route::get('/update-complaint-type/{id}', 'ComplaintTypeController@edit')->name('admin.complaint.type.update');
+        Route::post('/update-complaint-type-submit/{id}', 'ComplaintTypeController@update')->name('admin.complaint.type.update.submit');
+        Route::post('/delete-complaint-type/{id}', 'ComplaintTypeController@destroy')->name('admin.complaint.type.delete');
+
+        // Complaints
+        Route::get('/complaints', 'ComplaintController@index')->name('admin.complaint.index');
+        Route::post('/delete-complaint/{id}', 'ComplaintController@destroy')->name('admin.complaint.delete');
+        Route::post('/read-complaint/{id}', 'ComplaintController@setRead')->name('admin.complaint.read');
+        Route::post('/unread-complaint/{id}', 'ComplaintController@setUnread')->name('admin.complaint.unread');
+    });
 });
+
+Route::get('/events', 'EventController@everything')->name('event.everything');
 
 Route::get('/event/{id}', 'EventController@profile')->where('id', '[0-9]+')->name('event.profile');

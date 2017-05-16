@@ -10,8 +10,6 @@ class Event extends Model
 
     protected $table = 'events';
 
-
-    // protected $fillable = ['name', 'place', 'quota', 'start_date', 'finish_date', 'last_attendance_date', 'attendance_price'];
     protected $guarded = [];
 
     public function categories()
@@ -20,7 +18,7 @@ class Event extends Model
     }
     public function comments()
     {
-        return $this->hasMany('App\Comment', 'event_id');
+        return $this->hasMany('App\Comment');
     }
     public function files()
     {
@@ -33,5 +31,13 @@ class Event extends Model
     public function eventable()
     {
         return $this->morphTo();
+    }
+    public function city()
+    {
+        return $this->belongsTo('App\City', 'city_id', 'code');
+    }
+    public function complaints()
+    {
+        return $this->hasMany('App\Complaint');
     }
 }

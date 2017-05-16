@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-3">
-            <p class="lead">Etkinlik Kategorileri</p>
+            <p class="lead">Kategoriler</p>
             <div class="list-group pre-scrollable index-category scroll-style">
                 @foreach ($categories as $category)
                     <a href="#" class="list-group-item">{{ $category->name }} <span class="badge badge-default badge-pill">{{ $category->getCountItsUsed() }}</span></a>

@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/user';
 
     /**
      * Create a new controller instance.
@@ -42,6 +42,9 @@ class LoginController extends Controller
     {
         if(Auth::guard('organizer')->user()){
             return redirect()->route('organizer.index');
+        }
+        elseif(Auth::guard('admin')->user()){
+            return redirect()->route('admin.index');
         }
         return view('auth.login');
     }

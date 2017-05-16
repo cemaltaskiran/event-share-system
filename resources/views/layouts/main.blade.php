@@ -21,6 +21,8 @@
     <script src="{{ asset('public/js/app.js') }}"></script>
     <script src="{{ asset('public/js/bootstrap-notify.min.js') }}"></script>
     <script src="{{ asset('public/js/select2.min.js') }}"></script>
+    <script src="{{ asset('public/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('public/js/jquery.shorten.js') }}"></script>
     <script src="{{ asset('public/js/functions.js') }}"></script>
     <script>
         window.Laravel = {!! json_encode([
@@ -49,15 +51,19 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <li><a href="{{route('event.everything')}}">Etkinlikler</a></li>
+                    <li><a href="#">Page 2</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guard('organizer')->check())
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::guard('organizer')->user()->name }} <span class="caret"></span>
+                                <i class="fa fa-suitcase" aria-hidden="true"></i> {{ Auth::guard('organizer')->user()->name }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ route('organizer.index') }}">Organizatör paneli</a></li>
                                 <li>
-                                    <a href="{{ route('logout') }}"
+                                    <a href="{{ route('organizer.logout') }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('organizer-logout-form').submit();">
                                         Çıkış yap
@@ -68,10 +74,29 @@
                                 </li>
                             </ul>
                         </li>
+                    @elseif (Auth::guard('admin')->check())
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <i class="fa fa-user-secret" aria-hidden="true"></i> {{ Auth::guard('admin')->user()->name }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('admin.index') }}">Admin paneli</a></li>
+                                <li>
+                                    <a href="{{ route('admin.logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('organizer-logout-form').submit();">
+                                        Çıkış yap
+                                    </a>
+                                    <form id="organizer-logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
                     @elseif (!Auth::user())
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Kullanıcı Paneli <span class="caret"></span>
+                                <i class="fa fa-user" aria-hidden="true"></i> Kullanıcı Paneli <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ route('login') }}">Giriş</a></li>
@@ -80,7 +105,7 @@
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Organizatör Paneli <span class="caret"></span>
+                                <i class="fa fa-suitcase" aria-hidden="true"></i> Organizatör Paneli <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
@@ -91,10 +116,10 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                <i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('home.index') }}">Kullanıcı paneli</a></li>
+                                <li><a href="{{ route('user.index') }}">Kullanıcı paneli</a></li>
                                 <li>
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -118,7 +143,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Etkinlik Takip Modülü 2017</p>
                 </div>
             </div>
         </footer>

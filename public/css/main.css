@@ -94,8 +94,31 @@ footer {
     overflow-y: scroll;
     height: 267px;
 }
+
 .event-box{
     height: 295px;
+}
+
+.event-details{
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0;
+    height: 361px;
+}
+
+.google-maps {
+    position: relative;
+    padding-bottom: 25%;
+    height: 0;
+    overflow: hidden;
+}
+.google-maps iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
 }
 @media screen and (max-width: 1200px){
     .event-box{
@@ -104,6 +127,12 @@ footer {
     .index-category{
         height: 210px;
     }
+    .event-details{
+        height: 291px;
+    }
+    .google-maps {
+        padding-bottom: 22%;
+    }
 }
 @media screen and (max-width: 991px){
     .event-box{
@@ -111,6 +140,13 @@ footer {
     }
     .index-category{
         height: 180px;
+    }
+    .event-details{
+        height: 301px;
+        margin-bottom: 20px;
+    }
+    .google-maps {
+        padding-bottom: 25%;
     }
 }
 @media screen and (max-width: 767px){
@@ -122,6 +158,12 @@ footer {
     }
     .index-category{
         height: 150px;
+    }
+    .event-details{
+        height: 400px;
+    }
+    .google-maps {
+        padding-bottom: 55%;
     }
 }
 @media screen and (max-width: 540px){
@@ -144,13 +186,6 @@ footer {
     }
 }
 
-.event-details{
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin: 0;
-}
-
 .event-attributes{
     padding: 0;
     margin: 5px 10px;
@@ -168,4 +203,21 @@ footer {
 }
 .color-red{
     color: #ba202e;
+}
+.color-darkgray{
+    color: #636b6f;
+}
+.color-blue{
+    color: #3083ac;
+}
+.no-bs{
+    box-shadow: 0!important;
+}
+.filter-title{
+    cursor: pointer !important;
+}
+.not-found{
+    font-size: 150px;
+    font-weight: bold;
+    text-shadow: 0 1px #000;
 }

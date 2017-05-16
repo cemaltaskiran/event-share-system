@@ -17,8 +17,9 @@ class CreateComplaintsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('type_id')->references('id')->on('complaint_types')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('event_id')->references('id')->on('events')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedInteger('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');            
+            $table->unsignedInteger('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('description')->nullable();
+            $table->unsignedInteger('status')->default(1);
             $table->timestamps();
         });
     }

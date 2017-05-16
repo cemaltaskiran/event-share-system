@@ -59,6 +59,8 @@ class Kernel extends HttpKernel
         'role' => \App\Http\Middleware\RoleMiddleware::class,
 
         // New added
+        'admin-auth' => \App\Http\Middleware\AuthenticateAdmin::class,
+        'admin-guest' => \App\Http\Middleware\RedirectIfAdminAuthenticated::class,
         'organizer-auth' => \App\Http\Middleware\AuthenticateOrganizer::class,
         'organizer-guest' => \App\Http\Middleware\RedirectIfOrganizerAuthenticated::class,
     ];

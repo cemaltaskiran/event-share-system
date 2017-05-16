@@ -39,39 +39,45 @@ class CategoryController extends Controller
         return null;
     }
 
-    public function showIndex(){
-		$eventCategories = Category::orderBy("id", "asc")->get();
-
-		return view('index')->with('eventCategories', $eventCategories);
-	}
-
     public function displayCategories(Request $request){
+        $page = $request->page;
+        $validator = Validator::make($request->all(), [
+            'keyword' => 'nullable|max:255',
+            'pager' => 'nullable|integer|min:10|max:50',
+        ]);
 
-        $page = $request->get("page");
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return redirect()->back()->withInput(Input::all())->withErrors($errors);
+        }
         $eventCategories = Category::where(function($query) use ($request){
             // Filter by search keyword
-            if(($search = $request->get("search"))){
-                $query->where('name', 'like', '%'.$search.'%');
+            if(($keyword = $request->get("keyword"))){
+                $query->where('name', 'like', '%'.$keyword.'%');
             }
-        })
-        ->orderBy("name", "asc")->paginate(10);
-        if($page > ceil($eventCategories->total()/10)){
-            return redirect()->route('category.index');
+        })->orderBy("name", "asc");
+        if(!$pager = $request->pager){
+            $pager = 10;
         }
-        return view('category.index')->with('eventCategories', $eventCategories);
+        $eventCategories = $eventCategories->paginate($pager);
+
+        if($page > ceil($eventCategories->total()/$pager)){
+            return redirect()->route('admin.category.index');
+        }
+        return view('admin.category.index')->with('eventCategories', $eventCategories);
     }
 
     public function showCreateForm(){
-      return view('category.create');
+        return view('admin.category.create');
     }
 
     public function showUpdateForm($id){
         $eventCategory = Category::find($id);
         if($eventCategory){
-            return view('category.update')->with('eventCategory', $eventCategory);
+            return view('admin.category.update')->with('eventCategory', $eventCategory);
         }
         $errors = "Güncellemek istediğiz etkinlik bulunamadı.";
-        return redirect()->route('category.index')->withErrors($errors);
+        return redirect()->route('admin.category.index')->withErrors($errors);
     }
 
     public function store(Request $request){
@@ -115,10 +121,10 @@ class CategoryController extends Controller
         if($eventCategory){
           $name = $eventCategory->name;
           $eventCategory->delete();
-          return redirect()->route('category.index')->with('success', $name." adlı kategori başarıyla silindi.");
+          return redirect()->route('admin.category.index')->with('success', $name." adlı kategori başarıyla silindi.");
         }
         $errors = "Silmek istediğizi kategori bulunamadı.";
-        return redirect()->route('category.index')->withErrors($errors);
+        return redirect()->route('admin.category.index')->withErrors($errors);
 
     }
 

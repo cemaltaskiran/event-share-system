@@ -12,7 +12,7 @@ class AuthenticateOrganizer
         //If request does not comes from logged in seller
         //then he shall be redirected to Seller Login page
         if (! Auth::guard('organizer')->check()) {
-            return redirect('/organizer/login');
+            return redirect()->route('organizer.login');
         }
 
         return $next($request);
