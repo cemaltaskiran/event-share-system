@@ -83,7 +83,6 @@
                                         <div class="form-group">
                                             <label for="pager">Gösterilecek sonuç sayısı</label>
                                             <select class="form-control" name="pager" id="pager">
-                                                <option value="">Seçiniz</option>
                                                 @for ($i=1; $i < 6; $i++)
                                                     <option @if (app('request')->input('pager') == $i*10) selected @endif>{{ $i*10 }}</option>
                                                 @endfor
@@ -147,7 +146,7 @@
                                                     @elseif ($event->finish_date <= Carbon\Carbon::now())
                                                         class="bg-success"
                                                     @endif>
-                                                    <td>{{ $event->name }}</td>
+                                                    <td><a href="{{route('event.profile', ['id' => $event->id])}}" target="_blank">{{ $event->name }}</a></td>
                                                     <td>{{ $event->city->name }}</td>
                                                     <td title="{{ $event->place }}">{{ str_limit($event->place, 10) }}</td>
                                                     <td>{{ Carbon\Carbon::parse($event->start_date)->format('d-m-Y H:i') }}</td>

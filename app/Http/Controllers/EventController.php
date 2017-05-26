@@ -8,6 +8,7 @@ use
     App\City,
     App\Comment,
     App\ComplaintType,
+    App\Priority,
     Illuminate\Http\Request,
     Validator,
     Redirect,
@@ -19,6 +20,26 @@ use
 
 class EventController extends Controller
 {
+    protected function getPEvents(){
+        $now = Carbon::now();
+        return Event::where([
+            ['status', '=', 1],
+            ['finish_date', '>', $now],
+            ['publication_date', '<', $now],
+            ['eventable_type', '=', 'Organizer'],
+        ])->limit(6)->orderBy("start_date", "asc")->get();
+    }
+
+    protected function getUEvents(){
+        $now = Carbon::now();
+        return Event::where([
+            ['status', '=', 1],
+            ['finish_date', '>', $now],
+            ['publication_date', '<', $now],
+            ['eventable_type', '=', 'User'],
+        ])->limit(6)->orderBy("start_date", "asc")->get();
+    }
+
     protected function getPrefix(){
         if(Auth::guard('organizer')->check()){
             return "organizer";
@@ -87,11 +108,13 @@ class EventController extends Controller
     }
 
     public function showIndex(){
-		$events = Event::orderBy("id", "desc")->get();
+        $priorityEvents = $this->getPEvents();
+        $UEvents = $this->getUEvents();
         $categories = $this->getCategories();
 
 		return view('index')->with([
-            'events'=> $events,
+            'priorityEvents'=> $priorityEvents,
+            'UEvents' => $UEvents,
             'categories' => $categories
         ]);
 	}
@@ -897,13 +920,110 @@ class EventController extends Controller
     }
 
     public function everything(Request $request){
-        $events = Event::orderBy("id", "desc")->get();
-        $categories = $this->getCategories();
 
-		return view('everything')->with([
-            'events'=> $events,
-            'categories' => $categories
+        $page = $request->page;
+        $validator = Validator::make($request->all(), [
+            'keyword'       => 'nullable|max:255',
+            'city'          => 'nullable|integer|min:1|max:81',
+            'start_date'    => 'nullable|date',
+            'finish_date'   => 'nullable|date',
+            'orderBy'       => 'nullable|string|min:1|max:30',
+            'pager'         => 'nullable|integer|min:10|max:50',
         ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return redirect()->back()->withInput(Input::all())->withErrors($errors);
+        }
+        if($request->start_date && $request->finish_date && ($request->start_date >= $request->finish_date)){
+            $errors = "Başlangıç Tarihi, Bitiş Tarihinden yüksek olamaz.";
+            return redirect()->back()->withInput(Input::all())->withErrors($errors);
+        }
+        $orderBy = "start_date";
+        $now = Carbon::now();
+        if($request->category){
+            $category_id = $request->category;
+            $cat = Category::find($category_id);
+            $events = $cat->events();
+        }
+        else {
+            $events = Event::where(function($query) use ($request){
+                /* Filter by search keyword */
+                    if(($keyword = $request->keyword)){
+                        $query->where([['name', 'like', '%'.$keyword.'%']]);
+                    }
+                /* Filter by city */
+                    if(($city = $request->city)){
+                        $query->where([['city_id', '=', $city]]);
+                    }
+                /* Filter by dates */
+                    if($start = $request->start_date && $finish = $request->finish_date){
+                        $start = $request->start_date;
+                        $finish = $request->finish_date.' 23:45:00';
+                        $query->where([
+                                ['start_date', '=>', $start]
+                            ])
+                            ->orWhere([
+                                ['finish_date', '<=', $finish]
+                            ]);
+                    }
+                    elseif($start = $request->start_date && !($finish = $request->finish_date)){
+                        $start = $request->start_date;
+                        $query->where([
+                            ['start_date', '>=', $start]
+                        ]);
+                    }
+                    elseif(!($start = $request->start_date) && $finish = $request->finish_date){
+                        $finish = $request->finish_date.' 23:45:00';
+                        $query->where([
+                            ['finish_date', '<=', $finish]
+                        ]);
+                    }
+            });
+        }
+        $events = $events->where([
+            ['status', '=', 1],
+            ['finish_date', '>', $now],
+            ['publication_date', '<', $now],
+        ]);
+        if($request->get('orderBy')){
+            $events = $events->orderBy($request->get('orderBy'), "asc");
+        }
+        else {
+            $events = $events->orderBy("start_date", "asc");
+        }
+        if(!$pager = $request->pager){
+            $pager = 10;
+        }
+        $events = $events->paginate($pager);
+        if($page <= ceil($events->total()/$pager)){
+            $priorityEvents = $this->getPEvents();
+            $UEvents = $this->getUEvents();
+            $searchableCities = City::all();
+            $categories = $this->getCategories();
+            return view('everything')->with([
+                'events' => $events,
+                'categories' => $categories,
+                'searchableCities' => $searchableCities,
+                'priorityEvents' => $priorityEvents,
+                'UEvents' => $UEvents,
+                ]);
+        }
+        return view('everything');
+    }
+
+    public function joiners($id)
+    {
+        $event = $this->checkIfEventOwnedByCreator($id);
+        if(!$event){
+            $event = Event::find($id);
+            $users = $event->users;
+            return view('joiners')->with([
+                'event' => $event,
+                'users' => $users,
+            ]);
+        }
+        return $event;
     }
 
 }

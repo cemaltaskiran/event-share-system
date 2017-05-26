@@ -7,6 +7,7 @@
     if(app('request')->input('keyword') || app('request')->input('city') || app('request')->input('start_date') || app('request')->input('finish_date') || app('request')->input('status') || app('request')->input('pager')){
         $filters = true;
     }
+
 @endphp
 @extends('layouts.main')
 @section('content')
@@ -83,7 +84,6 @@
                                         <div class="form-group">
                                             <label for="pager">Gösterilecek sonuç sayısı</label>
                                             <select class="form-control" name="pager" id="pager">
-                                                <option value="">Seçiniz</option>
                                                 @for ($i=1; $i < 6; $i++)
                                                     <option @if (app('request')->input('pager') == $i*10) selected @endif>{{ $i*10 }}</option>
                                                 @endfor
@@ -147,7 +147,7 @@
                                                 @elseif ($event->finish_date <= Carbon\Carbon::now())
                                                     class="bg-success"
                                                 @endif>
-                                                <td>{{ $event->name }}</td>
+                                                <td><a href="{{route('event.profile', ['id' => $event->id])}}" target="_blank">{{ $event->name }}</a></td>
                                                 <td>{{ $event->city->name }}</td>
                                                 <td title="{{ $event->place }}">{{ str_limit($event->place, 10) }}</td>
                                                 <td>{{ Carbon\Carbon::parse($event->start_date)->format('d-m-Y H:i') }}</td>
@@ -168,6 +168,7 @@
                                                         $freezeUrl = route('organizer.event.freeze', ['id' => $event->id]);
                                                         $unfreezeUrl = route('organizer.event.unfreeze', ['id' => $event->id]);
                                                         $cancelUrl = route('organizer.event.cancel', ['id' => $event->id]);
+                                                        $joiners = route('organizer.event.joiners', ['id' => $event->id]);
                                                     @endphp
                                                     <td>
                                                         <a href="{{ $updateUrl }}" class="update"><i class="fa fa-pencil" aria-hidden="true" title="Düzenle"></i></a>
@@ -178,6 +179,7 @@
                                                         @else
                                                             <i class="fa fa-clock-o text-success" aria-hidden="true" title="Etkinlik bitmiş"></i>
                                                         @endif
+                                                        <a href="{{$joiners}}" target="_blank"><i class="fa fa-list" aria-hidden="true" title="Katılımcıları gör"></i></a>
                                                     </td>
                                                 @endif
                                             </tr>

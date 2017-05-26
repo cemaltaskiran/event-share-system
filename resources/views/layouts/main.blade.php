@@ -51,8 +51,7 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{route('event.everything')}}">Etkinlikler</a></li>
-                    <li><a href="#">Page 2</a></li>
+                    <li><a href="{{route('event.everything')}}">Tüm Etkinlikler</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guard('organizer')->check())

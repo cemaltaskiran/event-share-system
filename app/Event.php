@@ -40,4 +40,8 @@ class Event extends Model
     {
         return $this->hasMany('App\Complaint');
     }
+    public function priority()
+    {
+        return $this->hasOne('App\Priority');
+    }
 }

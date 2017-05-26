@@ -35,6 +35,7 @@ Route::prefix('/user')->group(function(){
         Route::get('/joined-events', 'UserController@joinedEvents')->name('user.event.joined.index');
         Route::get('/view-event-file/{id}', 'EventController@download')->name('user.event.download');
         Route::post('/send-comment/{id}', 'EventController@sendComment')->name('user.comment.send');
+        Route::get('/joiners-event/{id}', 'EventController@joiners')->name('user.event.joiners');
 
         // Join event
         Route::post('/join-to-event/{id}', 'EventController@joinToEvent')->name('user.event.join.submit');
@@ -44,6 +45,9 @@ Route::prefix('/user')->group(function(){
 
         // Send complaint
         Route::post('/complaint-event/{id}', 'ComplaintController@sendComplaintment')->name('user.complaint.send');
+
+        // Update infos
+        Route::post('/update-info', 'UserController@update')->name('user.update');
     });
 });
 
@@ -81,6 +85,10 @@ Route::prefix('/organizer')->group(function() {
         Route::post('/freeze-event/{id}', 'EventController@freezeByCreator')->name('organizer.event.freeze');
         Route::post('/unfreeze-event/{id}', 'EventController@unfreezeByCreator')->name('organizer.event.unfreeze');
         Route::post('/cancel-event/{id}', 'EventController@cancel')->name('organizer.event.cancel');
+        Route::get('/joiners-event/{id}', 'EventController@joiners')->name('organizer.event.joiners');
+
+        // Update infos
+        Route::post('/update-info', 'OrganizerController@update')->name('organizer.update');
     });
 
 });

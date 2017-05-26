@@ -154,10 +154,11 @@ return [
         'email' => 'E-posta',
         'keyword' => 'Anahtar kelime',
         'status' => 'Durum',
-        'pager' => 'Sayfa başına gösterilecek sonuç',
+        'pager' => 'Sayfa başına gösterilecek sonuç sayısı',
         'comment' => 'Değerlendirme',
         'count' => 'Yıldız',
         'type' => 'Tip',
+        'password_old' => 'Şuanki şifreniz',
     ],
 
 ];

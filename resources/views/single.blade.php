@@ -10,6 +10,7 @@
     // check if user is authorized
     $user = false;
     $isJoined = false;
+    $ageFail = false;
     if($user = Auth::user()){
         // Initialization
         $userHasComment = false;
@@ -46,6 +47,15 @@
         if($event->last_attendance_date < Carbon\Carbon::now()){
             $overtime = true;
         }
+
+        if($event->age_restriction != null){
+            $now = Carbon\Carbon::now();
+            $ages = explode(",", $event->age_restriction);
+
+            if($now->subYears($ages[0]) < $user->bdate || $now->subYears($ages[1]) > $user->bdate){
+                $ageFail = true;
+            }
+        }
     }
     // check if event has comments
     $commentNum = count($event->comments()->get());
@@ -78,10 +88,15 @@
                 @endif
             </div>
         @endif
-        @if ($event->footnote)
+        @if ($event->footnote || isset($ages))
             <div class="col-md-12">
                 <div class="alert alert-info">
-                    <strong>Dipnot: </strong>{{ $event->footnote }}
+                    @if ($event->footnote)
+                    <p><strong>Dipnot: </strong>{{ $event->footnote }}</p>
+                    @endif
+                    @if (isset($ages))
+                    <p><strong>Yaş Kısıtlaması: </strong>{{ $ages[0] }} - {{ $ages[1] }}</p>
+                    @endif
                 </div>
             </div>
         @endif
@@ -144,6 +159,8 @@
                                         <button type="button" class="btn btn-primary disabled" title="Maksimum katılımcıya ulaşıldı"><i class="fa fa-plus" aria-hidden="true"></i> Maksimum katılımcıya ulaşıldı</button>
                                     @elseif ($overtime)
                                         <button type="button" class="btn btn-primary disabled" title="Son katılım tarihi geçti"><i class="fa fa-plus" aria-hidden="true"></i> Son katılım tarihi geçti</button>
+                                    @elseif ($ageFail)
+                                        <button type="button" class="btn btn-primary disabled" title="Bu etkinlik sizin yaşınıza uygun değil"><i class="fa fa-plus" aria-hidden="true"></i> Bu etkinlik sizin yaşınıza uygun değil</button>
                                     @elseif (!$isJoined)
                                         <form action="{{ $joinToEventRoute }}" method="post">
                                             {{ csrf_field() }}
@@ -298,7 +315,7 @@
                             <div class="col-md-12">
                                 <div class="lead">
                                     <div id="stars" class="starrr"></div>Bu etkinliğe oy ver
-                                    <input type="number" name="count" id="count" value="" class="form-control hidden" required>
+                                    <input type="number" name="count" id="count" value="" class="form-control hidden">
                             	</div>
                             </div>
                             <div class="col-md-12">

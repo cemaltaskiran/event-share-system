@@ -56,8 +56,7 @@
                                     <div class="col-md-3 col-sm-6 col-xs-12">
                                         <div class="form-group">
                                             <label for="pager">Gösterilecek sonuç sayısı</label>
-                                            <select class="form-control" name="pager" id="pager">
-                                                <option value="">Seçiniz</option>
+                                            <select class="form-control" name="pager" id="pager">                                                
                                                 @for ($i=1; $i < 6; $i++)
                                                     <option @if (app('request')->input('pager') == $i*10) selected @endif>{{ $i*10 }}</option>
                                                 @endfor

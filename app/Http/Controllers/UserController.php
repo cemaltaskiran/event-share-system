@@ -129,4 +129,28 @@ class UserController extends Controller
         }
         return redirect()->route('user.event.joined');
     }
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
+
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return redirect()->back()->withInput($request->only('name', 'email'))->withErrors($errors);
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        return redirect()->route('user.index')->with('success', 'Bilgileriniz güncellendi.');
+
+
+    }
 }
