@@ -2,7 +2,6 @@
     $pageName = "Etkinlik";
     $pageNamePlural = "Etkinlikler";
     $rowNum = 8;
-    $createRoute = route('admin.event.create');
     $filters = false;
     if(app('request')->input('keyword') || app('request')->input('city') || app('request')->input('start_date') || app('request')->input('finish_date') || app('request')->input('status') || app('request')->input('pager')){
         $filters = true;
@@ -20,9 +19,6 @@
                     <div class="row">
                         <div class="col-md-6 col-xs-6">
                             <h4><b>{{$pageNamePlural}}</b></h4>
-                        </div>
-                        <div class="col-md-6 col-xs-6 pull-right text-right">
-                            <a href="{{ $createRoute }}"><button type="button" class="btn btn-primary">{{$pageName}} Oluştur</button></a>
                         </div>
                     </div>
                     <hr>
@@ -161,9 +157,12 @@
                                                     @endphp
                                                     <td>
                                                         <a href="{{ $updateUrl }}" class="update"><i class="fa fa-pencil" aria-hidden="true" title="Düzenle"></i></a>
-                                                        <a href="{{ $freezeUrl }}" class="freeze @if($event->status==3) hide @endif"><i class="fa fa-lock" aria-hidden="true" title="Askıya al"></i></a>
+                                                        <a href="{{ $freezeUrl }}" class="freeze @if($event->status==3 || $event->status==4) hide @endif"><i class="fa fa-lock" aria-hidden="true" title="Askıya al"></i></a>
                                                         <a href="{{ $unfreezeUrl }}" class="unfreeze @if($event->status!=3) hide @endif"><i class="fa fa-unlock" aria-hidden="true" title="Askından al"></i></a>
                                                         <a href="{{ $cancelUrl }}" class="cancel @if($event->status==4) hide @endif"><i class="fa fa-times" aria-hidden="true" title="İptal Et"></i></a>
+                                                        @if ($event->status==4)
+                                                            <i class="fa fa-ban text-warning" aria-hidden="true" title="Bu etkinlik sizin tarafınızdan iptal edilmiştir"></i>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -245,8 +244,9 @@
                                                             url: $this.attr('href')
                                                         });
                                                         // hide row
-                                                        jQuery(this).addClass('hide');
+                                                        jQuery(this).addClass("hide");
                                                         jQuery(this).siblings().addClass("hide");
+                                                        jQuery(this).siblings("a.update").removeClass("hide");
                                                         jQuery(this).parents("tr").addClass('bg-warning');
                                                         jQuery(this).parents("td").html('<i class="fa fa-ban text-warning" aria-hidden="true" title="Bu etkinlik sizin tarafınızdan iptal edilmiştir"></i>');
                                                         // notify user

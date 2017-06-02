@@ -42,19 +42,7 @@
         <div class="col-md-12">
             <h2>Öne Çıkan Etkinlikler</h2>
         </div>
-        @if (count($priorityEvents) > 5)
-            @for ($i=0; $i < 6; $i++)
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="thumbnail event-box">
-                        @php
-                            $url = route('event.profile', ['id' => $priorityEvents[$i]->id]);
-                        @endphp
-                        <a href="{{ $url }}"><img class="img-responsive" src="data:image/jpeg;base64,{{ base64_encode($priorityEvents[$i]->files[0]->file) }}" alt="{{ $priorityEvents[$i]->name }}"></a>
-                        <h4 class="text-center"><a href="{{ $url }}">{{ str_limit($priorityEvents[$i]->name, 25) }}</a></h4>
-                    </div>
-                </div>
-            @endfor
-        @elseif(count($priorityEvents) + count($UEvents) > 5)
+        @if(count($priorityEvents) + count($UEvents) + count($OEvents) > 5)
             @for ($i=0; $i < count($priorityEvents); $i++)
                 <div class="col-md-2 col-sm-4 col-xs-6">
                     <div class="thumbnail event-box">
@@ -66,7 +54,7 @@
                     </div>
                 </div>
             @endfor
-            @for ($i=$i; $i < 6; $i++)
+            @for ($i=$i; $i < count($UEvents) && $i < 6; $i++)
                 <div class="col-md-2 col-sm-4 col-xs-6">
                     <div class="thumbnail event-box">
                         @php
@@ -77,13 +65,24 @@
                     </div>
                 </div>
             @endfor
+            @for ($i=$i; $i < count($OEvents) && $i < 6; $i++)
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="thumbnail event-box">
+                        @php
+                            $url = route('event.profile', ['id' => $OEvents[$i]->id]);
+                        @endphp
+                        <a href="{{ $url }}"><img class="img-responsive" src="data:image/jpeg;base64,{{ base64_encode($OEvents[$i]->files[0]->file) }}" alt="{{ $OEvents[$i]->name }}"></a>
+                        <h4 class="text-center"><a href="{{ $url }}">{{ str_limit($OEvents[$i]->name, 25) }}</a></h4>
+                    </div>
+                </div>
+            @endfor
         @else
-            Gösterilecek aktif öncelikli etkinlik malesef yok.
+            Malesef yeterli sayıda gösterilecek etkinlik sistemimizde bulunmamaktadır.
         @endif
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h3>Tüm Etkinlikler</h3>
+            <h3>Aktif Etkinlikler</h3>
         </div>
     </div>
     <div class="row">

@@ -116,14 +116,12 @@ Route::prefix('/admin')->group(function(){
 
         // Events
         Route::get('/events', 'EventController@displayAdminEvents')->name('admin.event.index');
-        Route::get('/create-event', 'EventController@showCreateForm')->name('admin.event.create');
-        Route::post('/post-event', 'EventController@store')->name('admin.event.post');
         Route::get('/update-event/{id}', 'EventController@showAdminUpdateForm')->name('admin.event.update');
         Route::post('/update-event-submit/{id}', 'EventController@updateByAdmin')->name('admin.event.update.submit');
         Route::post('/delete-event/{id}', 'EventController@destroy')->name('admin.event.delete');
         Route::post('/freeze-event/{id}', 'EventController@freezeByAdmin')->name('admin.event.freeze');
         Route::post('/unfreeze-event/{id}', 'EventController@unfreezeByAdmin')->name('admin.event.unfreeze');
-        Route::post('/cancel-event/{id}', 'EventController@cancel')->name('admin.event.cancel');
+        Route::post('/cancel-event/{id}', 'EventController@cancelByAdmin')->name('admin.event.cancel');
 
         // Categories
         Route::get('/categories', 'CategoryController@displayCategories')->name('admin.category.index');

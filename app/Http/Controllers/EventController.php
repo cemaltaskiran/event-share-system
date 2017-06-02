@@ -40,6 +40,14 @@ class EventController extends Controller
         ])->limit(6)->orderBy("start_date", "asc")->get();
     }
 
+    protected function getOldEvents(){
+        $now = Carbon::now();
+        return Event::where([
+            ['status', '=', 1],
+            ['finish_date', '<', $now],
+        ])->limit(6)->orderBy("finish_date", "desc")->get();
+    }
+
     protected function getPrefix(){
         if(Auth::guard('organizer')->check()){
             return "organizer";
@@ -110,11 +118,13 @@ class EventController extends Controller
     public function showIndex(){
         $priorityEvents = $this->getPEvents();
         $UEvents = $this->getUEvents();
+        $OEvents = $this->getOldEvents();
         $categories = $this->getCategories();
 
 		return view('index')->with([
             'priorityEvents'=> $priorityEvents,
             'UEvents' => $UEvents,
+            'OEvents' => $OEvents,
             'categories' => $categories
         ]);
 	}
@@ -829,6 +839,20 @@ class EventController extends Controller
         return $event;
     }
 
+    public function cancelByAdmin($id){
+
+        if(Auth::guard('admin')->check()){
+            $event = Event::find($id);
+            $event->status = 4;
+            $event->save();
+            return redirect()->route('event.index')->with('success', $name." adlı etkinlik iptal edildi.");
+        }
+
+        $errors = "Yetkiniz dışında hareket ediyor yada böyle bir etkinlik yok.";
+        return redirect()->back()->withErrors($errors);
+
+    }
+
     public function profile($id){
         $event = Event::where([
             ['id', '=', $id],
@@ -999,6 +1023,7 @@ class EventController extends Controller
         if($page <= ceil($events->total()/$pager)){
             $priorityEvents = $this->getPEvents();
             $UEvents = $this->getUEvents();
+            $OEvents = $this->getOldEvents();
             $searchableCities = City::all();
             $categories = $this->getCategories();
             return view('everything')->with([
@@ -1007,6 +1032,7 @@ class EventController extends Controller
                 'searchableCities' => $searchableCities,
                 'priorityEvents' => $priorityEvents,
                 'UEvents' => $UEvents,
+                'OEvents' => $OEvents,
                 ]);
         }
         return view('everything');
